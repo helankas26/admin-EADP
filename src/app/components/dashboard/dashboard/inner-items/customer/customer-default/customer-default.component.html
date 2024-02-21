@@ -2,15 +2,7 @@
   <h3 class="header-text">Customer management</h3>
 
   <div class="chart-outer" id="chart">
-    <apx-chart
-      [series]="chartOptions.series!"
-      [chart]="chartOptions.chart!"
-      [xaxis]="chartOptions.xaxis!"
-      [dataLabels]="chartOptions.dataLabels!"
-      [grid]="chartOptions.grid!"
-      [stroke]="chartOptions.stroke!"
-      [title]="chartOptions.title!"
-    ></apx-chart>
+
   </div>
 
   <hr>
@@ -27,21 +19,31 @@
       <tr>
         <th>#id</th>
         <th>Email</th>
+        <th>Full Name</th>
         <th>Avatar</th>
         <th>Status</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>536465</td>
-        <td>{{ 'hasika@gmail.com' }}</td>
-        <td><img src="https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg" alt=""></td>
+      <tr *ngFor="let temp of dataArray">
+        <td>{{ temp?.userId }}</td>
+        <td>{{ temp?.email }}</td>
+        <td>{{ temp?.fullName }}</td>
+        <td><img src="{{temp?.avatarUrl}}" alt=""></td>
         <td>
-          <button mat-raised-button>Disable</button>
+          <button mat-raised-button>{{ temp?.status ? 'Disable' : 'Enable' }}</button>
         </td>
       </tr>
       </tbody>
     </table>
+
+    <mat-paginator [length]="count"
+                   [pageIndex]="page"
+                   [pageSize]="size"
+                   [pageSizeOptions]="[1, 10, 25, 100]"
+                   (page)="getServerData($event)"
+                   aria-label="Select page">
+    </mat-paginator>
 
   </div>
 

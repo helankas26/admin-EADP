@@ -1,99 +1,53 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatButton} from "@angular/material/button";
+import {CustomersService} from "../../../../../services/customers.service";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {NgForOf} from "@angular/common";
 
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexTitleSubtitle,
-  ApexStroke,
-  ApexGrid, NgApexchartsModule
-} from "ng-apexcharts";
-
-
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  dataLabels: ApexDataLabels;
-  grid: ApexGrid;
-  stroke: ApexStroke;
-  title: ApexTitleSubtitle;
-};
 
 @Component({
   selector: 'app-customer-default',
   standalone: true,
   imports: [
     MatButton,
-    NgApexchartsModule
+    MatPaginator,
+    NgForOf
   ],
   templateUrl: './customer-default.component.html',
   styleUrl: './customer-default.component.scss'
 })
-export class CustomerDefaultComponent implements AfterViewInit {
+export class CustomerDefaultComponent implements AfterViewInit, OnInit {
+  constructor(private customerService: CustomersService) {
+  }
 
-// @ts-ignore
-  @ViewChild("chart") chart: ChartComponent;
-  // @ts-ignore
-  public chartOptions: Partial<ChartOptions>;
+  controlsOn: boolean = false;
+
+  page: any = 0;
+  size: any = 10;
+  searchText: any = '';
+  dataArray: any[] = [];
+  count = 0;
+  pageEvent: PageEvent | undefined;
 
   ngAfterViewInit(): void {
-    this.chartOptions = {
-      series: [
-        {
-          name: "Users",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 480, 50, 450],
-          color: '#16A085'
-        }
-      ],
-      chart: {
-        animations: {
-          enabled: true,
-          easing: 'linear',
-          speed: 1000
-        },
-        height: 250,
-        type: "line",
-        zoom: {
-          enabled: false
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: "straight"
-      },
-      title: {
-        text: "Product Trends by Month",
-        align: "left"
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5
-        }
-      },
-      xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ]
-      }
-    };
+    this.controlsOn = true;
+  }
+
+  ngOnInit(): void {
+    this.loadCustomers();
+  }
+
+  private loadCustomers() {
+    this.customerService.findCustomers(this.page, this.size, this.searchText).subscribe(response => {
+      this.dataArray = response.data.dataList;
+      this.count = response.data.count;
+    })
+  }
+
+  getServerData(pageData: any) {
+    this.page = pageData.pageIndex;
+    this.size = pageData.pageSize;
+    this.loadCustomers();
   }
 
 }
