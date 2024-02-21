@@ -1,8 +1,16 @@
 <div class="main-outer">
   <h3 class="header-text">Customer management</h3>
 
-  <div class="chart-outer">
-
+  <div class="chart-outer" id="chart">
+    <apx-chart
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [xaxis]="chartOptions.xaxis!"
+      [dataLabels]="chartOptions.dataLabels!"
+      [grid]="chartOptions.grid!"
+      [stroke]="chartOptions.stroke!"
+      [title]="chartOptions.title!"
+    ></apx-chart>
   </div>
 
   <hr>
