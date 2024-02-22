@@ -21,9 +21,11 @@ import {
 import {
   ReviewDefaultComponent
 } from "./components/dashboard/dashboard/inner-items/review/review-default/review-default.component";
+import {LoginPageComponent} from "./components/security/login-page/login-page.component";
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/dashboard/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginPageComponent},
   {
     path: 'dashboard', component: DashboardComponent, children: [
       {path: '', redirectTo: '/dashboard/home', pathMatch: 'full'},
