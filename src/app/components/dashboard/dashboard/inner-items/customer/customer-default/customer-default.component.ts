@@ -50,7 +50,7 @@ export class CustomerDefaultComponent implements AfterViewInit, OnInit {
   // @ts-ignore
   obs: Subscription;
 
-  controlsOn: boolean = false;
+  // controlsOn: boolean = false;
 
   page: any = 0;
   size: any = 10;
@@ -60,7 +60,7 @@ export class CustomerDefaultComponent implements AfterViewInit, OnInit {
   pageEvent: PageEvent | undefined;
 
   ngAfterViewInit(): void {
-    this.controlsOn = true;
+    // this.controlsOn = true;
   }
 
   // @ts-ignore
