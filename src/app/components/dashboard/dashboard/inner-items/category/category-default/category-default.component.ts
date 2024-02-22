@@ -3,6 +3,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {CategoryService} from "../../../../../services/category.service";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-category-default',
@@ -10,7 +11,8 @@ import {CategoryService} from "../../../../../services/category.service";
   imports: [
     MatPaginator,
     ReactiveFormsModule,
-    MatButton
+    MatButton,
+    NgForOf
   ],
   templateUrl: './category-default.component.html',
   styleUrl: './category-default.component.scss'

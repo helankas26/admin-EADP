@@ -5,7 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ReviewBottomSheetComponent} from "./elements/review-bottom-sheet/review-bottom-sheet.component";
 import {UserPopUpModalComponent} from "./elements/user-pop-up-modal/user-pop-up-modal.component";
 import {MatPaginator} from "@angular/material/paginator";
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 
 @Component({
@@ -14,7 +14,8 @@ import {MatButton} from "@angular/material/button";
   imports: [
     MatPaginator,
     DatePipe,
-    MatButton
+    MatButton,
+    NgForOf
   ],
   templateUrl: './review-default.component.html',
   styleUrl: './review-default.component.scss'

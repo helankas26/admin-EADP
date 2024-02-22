@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {CartService} from "../../../../../services/cart.service";
 import {MatButton} from "@angular/material/button";
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-cart-default',
@@ -10,7 +10,8 @@ import {DatePipe} from "@angular/common";
   imports: [
     MatPaginator,
     MatButton,
-    DatePipe
+    DatePipe,
+    NgForOf
   ],
   templateUrl: './cart-default.component.html',
   styleUrl: './cart-default.component.scss'
