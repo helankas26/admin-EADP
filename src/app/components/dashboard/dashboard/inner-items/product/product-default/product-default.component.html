@@ -1,1 +1,38 @@
-<p>product-default works!</p>
+<div class="main-outer">
+  <h3 class="header-text">Product Details</h3>
+  <hr>
+  <div class="customers-data-wrapper">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#id</th>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+        <th>Discount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let temp of dataArray">
+        <td>{{ temp?._id }}</td>
+        <td>{{ temp?.description }}</td>
+        <td>{{ temp?.qty }}</td>
+        <td>{{ temp?.unitprice }}</td>
+        <td>
+          <button type="button" mat-raised-button (click)="setDiscount(temp?._id)">Set Discount</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator [length]="count"
+                   [pageIndex]="page"
+                   [pageSize]="size"
+                   [pageSizeOptions]="[1, 10, 25, 100]"
+                   (page)="getServerData($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+
+  </div>
+
+</div>
