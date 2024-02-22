@@ -1,1 +1,44 @@
-<p>review-default works!</p>
+<div class="main-outer">
+  <h3 class="header-text">Review Details</h3>
+  <hr>
+
+  <div class="customers-data-wrapper">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#id</th>
+        <th>date</th>
+        <th>Review</th>
+        <th>Stars</th>
+        <th>User</th>
+        <th>product</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let temp of dataArray">
+        <td>{{ temp?._id }}</td>
+        <td>{{ temp?.date | date:'EEEE, MMMM d, y' }}</td>
+        <td>
+          <button mat-raised-button color="primary" (click)="showReview(temp?.review)">Show Review</button>
+        </td>
+        <td>
+          <button mat-raised-button color="warn" (click)="findUser(temp?.user)">Find user</button>
+        </td>
+        <td>
+          <button mat-raised-button (click)="showProduct(temp?._id)">Show Product</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator [length]="count"
+                   [pageIndex]="page"
+                   [pageSize]="size"
+                   [pageSizeOptions]="[1, 10, 25, 100]"
+                   (page)="getServerData($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+
+  </div>
+
+</div>
