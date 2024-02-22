@@ -1,1 +1,54 @@
-<p>category-default works!</p>
+<div class="main-outer">
+  <h3 class="header-text">Category Details</h3>
+  <br>
+
+  <form [formGroup]="form" style="width: 100%" (ngSubmit)="saveCategory()">
+    <div class="row" style="margin: 0">
+      <div class="col-4">
+
+        <div class="form-group">
+
+          <label for="category">Category</label>
+          <input type="text" class="form-control" id="category" formControlName="category"
+                 placeholder="type the category here">
+        </div>
+        <div class="col-4">
+          <br>
+          <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save Category</button>
+        </div>
+      </div>
+    </div>
+
+
+  </form>
+
+
+  <hr>
+
+  <div class="customers-data-wrapper">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#id</th>
+        <th>Category</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let temp of dataArray">
+        <td>{{ temp?._id }}</td>
+        <td>{{ temp?.category }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator [length]="count"
+                   [pageIndex]="page"
+                   [pageSize]="size"
+                   [pageSizeOptions]="[1, 10, 25, 100]"
+                   (page)="getServerData($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+
+  </div>
+
+</div>
