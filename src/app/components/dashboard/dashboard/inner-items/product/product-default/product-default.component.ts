@@ -4,6 +4,8 @@ import {MatButton} from "@angular/material/button";
 import {DiscountsService} from "../../../../../services/discounts.service";
 import {ProductsService} from "../../../../../services/products.service";
 import {NgForOf} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {NewDiscountModalComponent} from "./modal/new-discount-modal/new-discount-modal.component";
 
 @Component({
   selector: 'app-product-default',
@@ -23,7 +25,7 @@ export class ProductDefaultComponent implements AfterViewInit, OnInit {
   dataArray: any[] = [];
   count = 0;
 
-  constructor(private discountsService: DiscountsService, private productService: ProductsService) {
+  constructor(private dialog: MatDialog, private discountsService: DiscountsService, private productService: ProductsService) {
   }
 
   ngAfterViewInit(): void {
@@ -53,6 +55,10 @@ export class ProductDefaultComponent implements AfterViewInit, OnInit {
   }
 
   setDiscount(_id: any) {
-    //
+    this.dialog.open(NewDiscountModalComponent, {
+      width: '500px',
+      data: {id: _id},
+      disableClose: true
+    });
   }
 }
