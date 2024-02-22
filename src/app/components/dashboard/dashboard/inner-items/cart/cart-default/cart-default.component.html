@@ -14,12 +14,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let temp of dataArray">
-        <td>{{ temp?.userId }}</td>
-        <td>{{ temp?.email }}</td>
-        <td>{{ temp?.fullName }}</td>
-        <td><img src="{{temp?.avatarUrl}}" alt=""></td>
+        <td>{{ temp?._id }}</td>
+        <td>{{ temp?.date | date:'EEEE, MMMM d, y' }}</td>
+        <td>{{ temp?.qty }}</td>
         <td>
-          <button mat-raised-button>{{ temp?.status ? 'Disable' : 'Enable' }}</button>
+          <button mat-raised-button (click)="showProduct(temp?._id)">Show Product</button>
         </td>
       </tr>
       </tbody>

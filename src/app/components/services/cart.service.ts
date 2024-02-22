@@ -13,7 +13,7 @@ export class CartService {
   constructor(private http: HttpClient) {
   }
 
-  public loadData(page: any, size: any, searchText: any): Observable<any> {
-    return this.http.get(this.utilityUrl + 'users?page=' + page + '&size=' + size + '&searchText=' + searchText)
+  public loadData(page: any, size: any): Observable<any> {
+    return this.http.get(this.utilityUrl + 'cart/find-all?page=' + page + '&size=' + size)
   }
 }
